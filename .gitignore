@@ -20,6 +20,7 @@ yarn-error.log*
 *.sln
 *.sw?
 *-port.txt
+.history
 
 package-lock.json
 admin.lock

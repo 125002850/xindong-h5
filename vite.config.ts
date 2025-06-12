@@ -6,7 +6,6 @@ import { fileURLToPath } from 'node:url'
 import UnoCSS from 'unocss/vite'
 import { defineConfig, loadEnv } from 'vite'
 import Inspect from 'vite-plugin-inspect'
-import { viteMockServe } from 'vite-plugin-mock'
 import Progress from 'vite-plugin-progress'
 
 import Build from './vite.config.build'
@@ -21,8 +20,8 @@ export default defineConfig(({ mode, command }: ConfigEnv) => {
     console.log(`当前编译环境: ${process.env.VITE_APP_ENV}`)
 
     return {
-        base: './',
-        server: Build.server,
+        base: process.env.VITE_APP_BASE_PATH,
+        server: Build.server(process.env),
         build: Build.build,
         css: Css,
         resolve: {
@@ -39,11 +38,11 @@ export default defineConfig(({ mode, command }: ConfigEnv) => {
              * 本地和生产模拟服务
              * @see https://github.com/vbenjs/vite-plugin-mock/blob/main/README.zh_CN.md
              */
-            viteMockServe({
-                mockPath: 'mock',
-                enable: command === 'serve' || process.env.VITE_APP_ENV === 'test',
-                logger: true,
-            }),
+            // viteMockServe({
+            //     mockPath: 'mock',
+            //     enable: command === 'serve' || process.env.VITE_APP_ENV === 'test',
+            //     logger: true,
+            // }),
             /**
              * 检查Vite插件的中间状态
              * @see https://github.com/antfu/vite-plugin-inspect#readme

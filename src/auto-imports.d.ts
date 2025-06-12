@@ -9,6 +9,7 @@ declare global {
   const $Api: typeof import('./api/index')['$Api']
   const $api: typeof import('./composables/fetch')['$api']
   const EffectScope: typeof import('vue')['EffectScope']
+  const ScheduleContextKey: typeof import('./composables/provide')['ScheduleContextKey']
   const UTC2Date: typeof import('@lincy/utils')['UTC2Date']
   const UseTabLists: typeof import('./composables/index')['UseTabLists']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -49,6 +50,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const global: typeof import('./stores/global')['default']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -118,6 +120,7 @@ declare global {
   const showSuccessToast: typeof import('vant')['showSuccessToast']
   const showToast: typeof import('vant')['showToast']
   const storeToRefs: typeof import('pinia')['storeToRefs']
+  const stores: typeof import('./stores/index')['default']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']
@@ -209,7 +212,7 @@ declare global {
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
   const useGlobal: typeof import('./composables/index')['useGlobal']
-  const useGlobalStore: typeof import('./stores/use-global-store')['default']
+  const useGlobalStore: typeof import('./stores/global')['default']
   const useHead: typeof import('@unhead/vue')['useHead']
   const useId: typeof import('vue')['useId']
   const useIdle: typeof import('@vueuse/core')['useIdle']
@@ -272,6 +275,7 @@ declare global {
   const useSeoMeta: typeof import('@vueuse/head')['useSeoMeta']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
+  const useShopId: typeof import('./composables/shopData')['useShopId']
   const useSlots: typeof import('vue')['useSlots']
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
@@ -315,6 +319,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const user: typeof import('./stores/user')['default']
   const userToken: typeof import('./composables/config')['userToken']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
@@ -350,6 +355,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ScheduleContextKey: UnwrapRef<typeof import('./composables/provide')['ScheduleContextKey']>
     readonly UTC2Date: UnwrapRef<typeof import('@lincy/utils')['UTC2Date']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -389,6 +395,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly global: UnwrapRef<typeof import('./stores/global')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -458,6 +465,7 @@ declare module 'vue' {
     readonly showSuccessToast: UnwrapRef<typeof import('vant')['showSuccessToast']>
     readonly showToast: UnwrapRef<typeof import('vant')['showToast']>
     readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
+    readonly stores: UnwrapRef<typeof import('./stores/index')['default']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
@@ -549,7 +557,6 @@ declare module 'vue' {
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
     readonly useGlobal: UnwrapRef<typeof import('./composables/index')['useGlobal']>
-    readonly useGlobalStore: UnwrapRef<typeof import('./stores/use-global-store')['default']>
     readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
@@ -611,6 +618,7 @@ declare module 'vue' {
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
+    readonly useShopId: UnwrapRef<typeof import('./composables/shopData')['useShopId']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
@@ -654,6 +662,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly user: UnwrapRef<typeof import('./stores/user')['default']>
     readonly userToken: UnwrapRef<typeof import('./composables/config')['userToken']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>

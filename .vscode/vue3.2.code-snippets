@@ -6,14 +6,14 @@
   // Example:
 
   "Vue3.2+快速生成模板": {
-    "prefix": "Vue3.2+",
+    "prefix": "setup",
     "body": [
-      "<script setup lang=\"ts\">",
-      "$1",
-      "</script>\n",
       "<template>",
       "  <div>$0</div>",
-      "</template>\n"
+      "</template>\n",
+      "<script setup lang=\"ts\">",
+      "$1",
+      "</script>\n"
     ],
     "description": "Vue3.2+"
   },

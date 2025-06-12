@@ -1,4 +1,6 @@
 import type { AnyFn } from '@vueuse/core'
+import type { InjectionKey } from 'vue'
+import type { Biz } from '~/api'
 
 /** 登录 */
 export const onLoginKey = Symbol('onLoginKey') as InjectionKey<AnyFn>
@@ -15,3 +17,8 @@ export const dataIsReadyKey = Symbol('dataIsReadyKey') as InjectionKey<ComputedR
 
 export const showDialogKey = Symbol('showDialogKey') as InjectionKey<ComputedRef<boolean>>
 export const toggleDialogKey = Symbol('toggleDialogKey') as InjectionKey<AnyFn>
+export const ScheduleContextKey = Symbol('ScheduleContextKey') as InjectionKey<{
+  leaves: Ref<Biz.LeaveVo[]>
+  getLeaveList: () => Promise<void>
+  openLeave?: (date?: string) => void
+}>

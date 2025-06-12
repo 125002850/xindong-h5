@@ -1,26 +1,26 @@
-import type { RouteRecordRaw } from 'vue-router'
-
-const pages = import.meta.glob('../views/*.vue')
-
-let routes: Array<RouteRecordRaw> = []
-Object.keys(pages).forEach((path: string) => {
-    const math = path.match(/\.\/views(.*)\.vue$/)
-    if (math) {
-        const name = math[1].toLowerCase()
-        routes.push({
-            name: name.replace('/', ''),
-            path: name === '/home' ? '/' : name.replace(/-/g, '/'),
-            component: pages[path], // () => import('./views/*.vue')
-        })
-    }
-    return {}
-})
-
-routes = routes.concat([{ path: '/:pathMatch(.*)', redirect: '/' }])
+import { createWebHistory } from 'vue-router'
+import { routes } from 'vue-router/auto-routes'
+import wx from 'weixin-js-sdk'
+import useUserStore from '~/stores/user'
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
+  history: createWebHistory(import.meta.env.VITE_APP_BASE_PATH),
+  routes,
+})
+
+router.beforeEach(async (to, from, next) => {
+  const { refreshToken, getUserInfo, getShopOptions } = useUserStore()
+  const token = refreshToken()
+  if (!token) {
+    wx.miniProgram.navigateTo({
+      url: '/pages/login/index',
+    })
+    return
+  }
+
+  await Promise.all([getUserInfo(), getShopOptions()])
+
+  next()
 })
 
 export default router

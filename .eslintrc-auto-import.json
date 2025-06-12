@@ -342,6 +342,11 @@
     "createRef": true,
     "useCountdown": true,
     "Slot": true,
-    "Slots": true
+    "Slots": true,
+    "global": true,
+    "stores": true,
+    "user": true,
+    "ScheduleContextKey": true,
+    "useShopId": true
   }
 }
